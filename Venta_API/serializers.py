@@ -61,11 +61,12 @@ class SaleSerializer(serializers.ModelSerializer):
     """
     Serializador del modelo Sale
     """
-    articles = serializers.PrimaryKeyRelatedField(queryset=Article.objects.all(), many=True, read_only=False)
+    #articles = serializers.PrimaryKeyRelatedField(queryset=Article.objects.all(), many=True, read_only=False)
     total = serializers.FloatField(read_only=True)
     
     class Meta:
         model = Sale
+        depth = 1 #Profundidad de la consulta, trae datos del cliente
         fields = '__all__' #O lista con campos específicos, en caso de no querer todos los campos
     
     def create(self, validated_data):
